@@ -36,11 +36,11 @@ public class Counter : MonoBehaviour
 			{
 				numberCount++;
 				DisplayCountdown(numberCount);
-				Debug.Log("Дисплэй выводит число: " + numberCount + " c кулдауном: " + delay);
+				Debug.Log("Display shows the number: " + numberCount + " with cooldown: " + delay);
 			}
 			else
 			{
-				Debug.Log("Числа не увеличиваются.");
+				Debug.Log("Numbers do not increase.");
 			}
 
 			yield return wait;
