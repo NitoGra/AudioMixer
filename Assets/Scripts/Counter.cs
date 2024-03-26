@@ -9,12 +9,14 @@ public class Counter : MonoBehaviour
 	[SerializeField] private AudioSource _mouseDown;
 
 	private bool _work;
+	private int _numberCount;
 
 	private void Start()
 	{
 		_text.text = "";
-		_work = true;
-		StartCoroutine(Countdown(_delay));
+		_work = false;
+		_numberCount = 0;
+		DisplayCountdown(_numberCount);
 	}
 
 	private void OnMouseDown()
@@ -22,25 +24,28 @@ public class Counter : MonoBehaviour
 		_work = !_work;
 		_mouseDown.volume = 1;
 		_mouseDown.Play();
+
+		if (_work)
+			StartCoroutine(Countdown(_delay));
 	}
 
 	private IEnumerator Countdown(float delay)
 	{
 		bool isContinue = true;
 		var wait = new WaitForSeconds(delay);
-		int numberCount = 0;
 
 		while (isContinue)
 		{
 			if (_work)
 			{
-				numberCount++;
-				DisplayCountdown(numberCount);
-				Debug.Log("Display shows the number: " + numberCount + " with cooldown: " + delay);
+				_numberCount++;
+				DisplayCountdown(_numberCount);
+				Debug.Log("Display shows the number: " + _numberCount + " with cooldown: " + delay);
 			}
 			else
 			{
 				Debug.Log("Numbers do not increase.");
+				break;
 			}
 
 			yield return wait;
