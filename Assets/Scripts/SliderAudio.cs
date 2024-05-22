@@ -11,13 +11,13 @@ public class SliderAudio : MonoBehaviour
 		ChangeSliders();
 	}
 
-	private void ChangeSliders(float volume = 0)
-	{
-		_sliderSetting.value = volume;
-	}
-
 	public void ChangeVolume(float volume)
 	{
 		_groupAudio.audioMixer.SetFloat(_groupAudio.name, Mathf.Log10(volume) * 40);
+	}
+
+	private void ChangeSliders(float volume = 0)
+	{
+		_sliderSetting.value = volume;
 	}
 }
