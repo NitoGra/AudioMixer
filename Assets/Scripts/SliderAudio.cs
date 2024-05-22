@@ -7,6 +7,7 @@ public class SliderAudio : MonoBehaviour
 	[SerializeField] private AudioMixerGroup _groupAudio;
 
 	private float _volumeMultiplier = 40;
+	private float _masterVolume;
 
 	private void Start()
 	{
@@ -28,7 +29,14 @@ public class SliderAudio : MonoBehaviour
 		_sliderSetting.interactable = isEnabled;
 
 		if(isEnabled == false)
+		{
+			_masterVolume = _sliderSetting.value;
 			ChangeSliders();
+		}
+		else
+		{
+			ChangeSliders(_masterVolume);
+		}
 	}
 
 	public void ChangeVolume(float value)
